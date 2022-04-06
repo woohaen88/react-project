@@ -1,23 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Data from "./datas/goods";
+import { Navbar, Nav, Button } from "react-bootstrap";
+import { useState } from "react";
+import Card from "./components/Card";
+import { Link, Route, Switch } from "react-router-dom";
 
 function App() {
+  let [shoes, setShoes] = useState(Data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* NavBar */}
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#features">Features</Nav.Link>
+          <Nav.Link href="#pricing">Pricing</Nav.Link>
+        </Nav>
+      </Navbar>
+
+      {/* Route */}
+      <Switch>
+        <Route path="/test">
+          <div>test</div>
+        </Route>
+        <Route exac path="/">
+          {/* Jumbotron */}
+          <div className="jumbotron background">
+            <div className="jangmi">
+              <h1>Hello, world!</h1>
+              <p>
+                This is a simple hero unit, a simple jumbotron-style component
+                for calling extra attention to featured content or information.
+              </p>
+              <p>
+                <Button variant="primary">Learn more</Button>
+              </p>
+            </div>
+          </div>
+
+          {/* card */}
+          <div className="container">
+            <div className="row">
+              {Data.map((data, i) => {
+                return <Card shoes={data} key={i} />;
+              })}
+            </div>
+          </div>
+        </Route>
+      </Switch>
     </div>
   );
 }
