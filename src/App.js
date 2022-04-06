@@ -4,6 +4,7 @@ import { Navbar, Nav, Button } from "react-bootstrap";
 import { useState } from "react";
 import Card from "./components/Card";
 import { Link, Route, Switch } from "react-router-dom";
+import Detail from "./Detail/Detail";
 
 function App() {
   let [shoes, setShoes] = useState(Data);
@@ -12,8 +13,8 @@ function App() {
       {/* NavBar */}
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
+        <Nav className="mr-auto">          
+          <Nav.Link><Link to="/">Home</Link></Nav.Link>
           <Nav.Link href="#features">Features</Nav.Link>
           <Nav.Link href="#pricing">Pricing</Nav.Link>
         </Nav>
@@ -21,8 +22,11 @@ function App() {
 
       {/* Route */}
       <Switch>
-        <Route path="/test">
-          <div>test</div>
+        <Route path="/detail/:id">
+        <Detail shoes={shoes}/>
+        </Route>
+        <Route exac path="/detail">
+        <Detail shoes={shoes}/>
         </Route>
         <Route exac path="/">
           {/* Jumbotron */}
